@@ -1,0 +1,865 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"   
+          
+       
+
+  # Print the output of a shell command
+  - trigger: ":su"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'sudo su -'"
+
+
+  # Print the output of a shell command
+  - trigger: ":cd"
+    replace: "{{output}}"
+    vars:	
+       - name: output
+         type: shell
+         params:
+           cmd: "echo 'cd $(docroot.py  )'"
+           
+   # rewrite permlinks
+  - trigger: ":wpperm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'wp rewrite structure $(wp option get permalink_structure)'"       
+           
+     # core check
+  - trigger: ":core"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'wp core verify-checksums'"             
+                  
+       # wp s & r
+  - trigger: ":wpsr"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'wp search-replace \'http://\' \'https://\''"
+          
+          
+      # imh zone
+  - trigger: ":ash"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'ash-sys-pro-imhzone'"
+          
+          
+      
+      
+      # fix backups server side
+  - trigger: ":bum"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'backup daemon restart; sleep 5; backup sched'"
+      
+      
+      
+       # fix backups server side
+  - trigger: ":mad"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'modify-account whoevs5 --reseller --self --cgi --shell -p dedicated -a dedicated'"
+      
+      
+       # fix backups server side
+  - trigger: ":mav"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'modify-account whoevs5 --reseller --self --cgi --shell -p vps -a vps'"
+      
+      # list domains, vps+ only
+  - trigger: ":ld"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'for a in /var/named/*.db; do echo $(basename $a .db); done'"
+          
+                  
+        
+                  
+                  
+         # load on the node
+  - trigger: ":vzl"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'vzlist -Ho veid,laverage,description --sort laverage | tail'"
+          
+          # Large file scan for accounts, cpanel servers only
+#  - trigger: ":lg"
+#    replace: "{{output}}"
+#    vars:
+#      - name: output
+#        type: shell
+#        params:
+#          cmd: "echo -e 'for user in $(listacct | sort -nk4 | tail -70 | awk '{ print $1 }''); do du-tree -f /home/$user; done'"
+                  
+           
+           # Print the output of a shell command
+  - trigger: ":lynx"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'lynx -width=200 -dump ?http://127.0.0.1/whm-server-status | grep'"
+          
+          # Print the output of a shell command
+  - trigger: ":wpcore"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'wp core download --version=$(wp core version) --force'"
+           
+          # Print the output of a shell command
+  - trigger: ":ve"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'vzctl enter'"
+          
+         
+          # Print the output of a shell command
+  - trigger: ":vr"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'vzctl restart'"
+          
+          # Print the output of a shell command
+  - trigger: ":wa"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'watch -n 1'"
+         
+         # Print the output of a shell command
+  - trigger: ":pi"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'echo \"<?php phpinfo(); ?>\" >> phpinfo.php'"
+         
+         # Print the output of a shell command
+  - trigger: ":ss"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo '/opt/imh-scan/imh-scan -d'"
+          
+          
+        
+          # Print the output of a shell command
+  - trigger: ":if"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'iftop -nP -i'" 
+          
+          
+          # Print the output of a shell command
+  - trigger: ":chs"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'check_software'"
+          
+          # Print the output of a shell command
+  - trigger: ":chu"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'check_user'"
+          
+          # Print the output of a shell command
+  - trigger: ":scs"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'screen -S'"
+          
+          # Print the output of a shell command
+  - trigger: ":rbl"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo '/opt/dedrads/msp.pl --rbl --all'"
+          
+           # Print the output of a shell command
+  - trigger: ":exq"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'exiqgrep -if |tail'"
+          
+           # Print the output of a shell command
+  - trigger: ":ps"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'ps auxf | grep '"
+          
+          # Print the output of a shell command
+  - trigger: ":cpl"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/cpanel/cpkeyclt'"
+         
+         # Print the output of a shell command
+  - trigger: ":cps"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/cpanel/bin/checkallsslcerts --allow-retry --verbose'"
+          
+          # Print the output of a shell command
+  - trigger: ":sys"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'for i in httpd mysql exim dovecot;do systemctl status $i|grep Active;done'"
+         
+         
+         # Print the output of a shell command
+  - trigger: ":vle"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/var/log/exim_mainlog'"
+          
+          # Print the output of a shell command
+  - trigger: ":vla"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/var/log/apache2/'"
+          
+          # Print the output of a shell command
+  - trigger: ":ggt"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'grep /var/log/exim_mainlog|grep dovecot_login|tail'"
+        
+        # Print the output of a shell command
+  - trigger: ":exx"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'exiqgrep -if  |xargs exim -Mrm|wc -l;exiqgrep -ir |xargs exim -Mrm|wc -l;exim -bpc'"
+        
+        # Print the output of a shell command
+  - trigger: ":exm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'exim -Mvh '"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":ims"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'yum install -y imh-scan imh-clamav'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":ycpm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'yum install -y cpmigrate'"
+          
+         # Print the output of a shell command
+  - trigger: ":cpm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/opt/cpmigrate/cpmigrate.py -H'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":phpc"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/cpanel/bin/rebuild_phpconf --current'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":vpe"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'vzps aux -E'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":vzx"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'vzctl exec'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":rchk"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'cat /proc/mdstat;/sbin/mdadm --detail /dev/md0'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":myall"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'mysqlcheck --all-databases'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":rcm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/nagios/libexec/raid_collect.py --collect &> /home/nagios/raid_collect'"
+        
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":seip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'for pool in se1 se2 se3 se4 se5 se6; do echo -n \"$pool: \" && if [[ $(grep -c $pool /opt/se_ips.txt) -lt 5 ]] ; then grep $pool /opt/available_se_ips.txt; else echo \"All good\"; fi ; done'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":vzm"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'sudo /usr/sbin/ploop umount -m /vz/root/'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":gvg"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'grep -v grep'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":sch"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'show-conns -http'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":aps"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'ps auxf | sort -nr -k 3 | head -10'"
+
+
+
+         # Print the output of a shell command
+  - trigger: ":kpf"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'killall -9 php-fpm'"
+
+
+
+
+
+# Print the output of a shell command
+  - trigger: ":ecpsc"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '.as22611.net'"
+
+
+
+
+          ##vps packages start
+          
+          # Print the output of a shell command
+  - trigger: ":v4"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '4core4ram90disk'"
+          
+          
+          # Print the output of a shell command
+  - trigger: ":v8"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '8core8ram150disk_nvme'"
+          
+          
+          # Print the output of a shell command
+  - trigger: ":v12"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '12core12ram210disk_nvme'"
+          
+          
+          # Print the output of a shell command
+  - trigger: ":v16"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '16core16ram360disk_nvme'"
+          
+          
+          
+          # Print the output of a shell command
+  - trigger: ":lsd"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'for i in /var/named/*.db; do domain=$(basename $i .db); echo $domain; done'"
+          
+          
+          # Print the output of a shell command
+  - trigger: ":v20"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '20core20ram420disk_nvme'"
+          
+          ## vps packates end
+          
+          
+          
+        # Print the output of a shell command
+  - trigger: ":duh"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'du -h --max-depth=1'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":cha"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'check_apache --sortip --countip|tail -10'"
+        
+        
+        # Print the output of a shell command
+  - trigger: "!imh"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'inmotionhosting'"
+          
+          
+          # Print the output of a shell command
+  - trigger: "!whmo"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'Server is pinging and dedi keys issued, server is accessible'"
+          
+          
+          
+          # Print the output of a shell command
+  - trigger: "!face"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'ಠ_ಠ'"
+        
+        # Print the output of a shell command
+  - trigger: ":cl"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'clear'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":ro"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/opt/sharedrads/reap_fpm_orphans.sh'"
+        
+        
+  - trigger: ":mip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl 'https://icanhazip.com'"
+ 
+ 
+
+
+  - trigger: ":pass"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "tr -cd '[:alnum:]' < /dev/urandom | fold -w15 | head -n 1"
+
+        
+        # Print the output of a shell command
+  - trigger: ":d4"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'jump dns4'"
+
+          # Print the output of a shell command
+  - trigger: ":dp"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'as22611.net'"
+          
+          
+          
+          # Print the output of a shell command
+  - trigger: ":backup"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'backup clear-fails;backup daemon restart; sleep 5; backup sched'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":nrpe"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'yum remove -y imh-monitoring-plugins-ded imh-nrpe-ded; yum install -y imh-nrpe-ded imh-monitoring-plugins-ded; systemctl restart nrpe'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":ipa"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/cpanel/bin/clear_iplist_cache;service ipaliases restart;/scripts/rebuildippool'"
+        
+        
+        # Print the output of a shell command
+  - trigger: ":cu"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/opt/provision/setup-user.py --user  --domain  --email'"
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":dns"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e 'ash-sys-pro-dns4'"
+        
+        
+        
+        
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":troot"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/usr/local/cpanel/bin/whmapi1 create_user_session user=root service=whostmgrd'"
+        
+        
+        
+        
+        # Print the output of a shell command
+  - trigger: ":rs"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo -e '/scripts/restartsrv_'"
+        
+        
+        
+        
+        ##### Browser expansions
+          
+          # abuse general
+  - trigger: "!abu"
+    replace: "Hello,\n
+    
+    Thank you for bringing this to our attention, we have investigated and resolved the issue concerning your complaint to our Abuse department. We thank you for your attention and cooperation in this matter."
+    
+    
+ # ip assignment
+  - trigger: "!ipa"
+    replace: "So to get a dedicated IP, they will need to fill out the request for it in their amp, if they have free tokens for the ip, it will give them the option at check out to use those tokens instead of paying for them, once they do that that will make a ticket for systems to get a ip assigned to the server for them, ip assignments need to be done via ticket, so we can track them better."
+    
+    
+          #Abuse emails
+  - trigger: "!head"
+    replace: "Hello,
+
+Thank you for reporting this phishing email to us.
+
+In order to determine what actions we can take in regards to this, we will require the email source headers from the email you received.
+
+These headers include server transactional data, and are not the basic ones you usually see in your client and will require some additional navigation.
+
+This guide should help you to determine how to get the email headers with your email client: https://mxtoolbox.com/Public/Content/EmailHeaders/. Please copy and paste them as a reply to this email."
+
+
+
+          # Esc message
+  - trigger: "!esc"
+    replace: "Got your esc, few minutes while I check on this"
+    
+           
+           # Esc message
+  - trigger: "!qh"
+    replace: "quentinh"
+           
+           
+    # Time extender
+  - trigger: "!w8"
+    replace: "Still working on this, just a few more minutes"
+    
+    # Hello email
+  - trigger: "!hello"
+    replace: "Hello,\n
+
+Thank you for contacting System Administration department!"
+
+ # Hello email
+  - trigger: "!legal"
+    replace: "Hello,\n
+
+Thank you for contacting Abuse department!\n
+
+You will need to contact our legal department at legal@inmotionhosting.com for any copyright or trademark related issues, as our department only handles phishing/spam."
+  
+  # inmotion
+  - trigger: "!imhw"
+    replace: "inmotionhosting.com:2087"
+
+  # Serveconfig
+  - trigger: "!serw"
+    replace: "servconfig.com:2087"
+  
+  # Serveconfig
+  - trigger: "!ipe"
+    replace: "I'll pull the ip, please send a ticket to systems to delist the ip, and inform the cx there will not be a follow up from us, we will handle the ip issue internally, and to contact technical support directly for anymore email issues."
+  
+  
+# Serveconfig
+  - trigger: "!dip"
+    replace: "Cx will need to go to their amp, fill go through the checkout process for it there. If they have Ip tokens they will show at checkout, once submitted that will make a ticket for us to get the ip assigned, cx will need to wait for that to be completed. If cx does not have tokens,  then you or a cst will need to make the bill item for the ip, after that I will assign it to the server."
+    
+
+# Serveconfig
+  - trigger: "!phish"
+    replace: "Hello,
+ 
+Thank you for reporting this phishing email. We have reached out to our legal team with information provided from many reports, including yours, and they will be contacting the connected parties to issues a cease and desist. We appreciate your time and attention in regards to this matter"    
+    
+    
+                  # And much more! For more information, visit the docs: https://espanso.org/docs/

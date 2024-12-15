@@ -1,0 +1,78 @@
+1. go to github.com and set up a account. Install git via cli as needed
+
+SSH and terminal setup
+
+2. ssh-keygen -t ed25519 -C "your_git@email.com"
+
+3. cat  ~/.ssh/id_ed25519 and copy key
+	a. Log in to GitHub
+	b. Click your profile picture in the top-right corner and select "Settings".
+	c. In the left-hand menu, click "SSH and GPG keys"
+	d. Click the green "New SSH key" button
+	e. Add the SSH key: add description, name for the key, paste the key into key field and click add key.
+	 
+
+4. git config --global user.name "Your Name"
+
+5. git config --global user.email "your_email@example.com"
+
+6. Verify this is set: git config --global --list
+
+7. verify you can connect to your git account with ssh -T git@github.com
+	a. if you get a error, verify ssh settings
+	b. Confirm the SSH key is loaded into the SSH agent: ssh-add -l
+	c. If the output shows The agent has no identities, add your key: ssh-add ~/.ssh/id_ed25519
+
+
+Clonning repos and pushing changes
+
+8. Now the fun part. clone this: git@github.com:techwithq27/Configs.git (may have been done at the start of this, if so move on to next step)
+
+9. Where ever you clone the repo, cd into it
+
+IMPORTANT!!! DO NOT EVER FORGET THIS PART, OTHER WISE YOU CAN ERASE/MESS UP SOMEONES PROJECT, do this enough and NO ONE will allow you make PR's from your git hub account, not that hard to get banned if you're messing with peoples work.
+
+10. Always create a new branch for your changes. This keeps the main branch clean and allows for better collaboration: git checkout -b $CHANGE_THIS_NAME
+
+11. Verify you are on the new branch: git branch
+
+13. Make changes to some file, this one is fine. Save the changes.
+
+14. Stage the changes: git add . 
+
+15. Commit your changes: git commit -m "Describe the changes you made"
+
+16. git push -u origin $NAME_YOU_PICKED_ON_STEP_10
+
+
+
+Extra information:
+
+
+
+
+Create a Pull Request on GitHub
+
+    Go to the repository on GitHub.
+    You’ll see a message prompting you to create a pull request for the recently pushed branch. Click the "Compare & pull request" button.
+    Fill out the pull request form:
+        Title: Provide a concise title for the pull request.
+        Description: Describe the changes, why they are needed, and any context the maintainers should know.
+    Choose the base and compare branches:
+        Base: Usually the main branch (or the branch you're merging into).
+        Compare: Your feature branch.
+    Click "Create pull request".
+
+
+Key Differences Between Pushing Updates and Making a Pull Request
+
+    Pushing Updates:
+        You update a branch directly, typically in a repository you own.
+        No additional review process unless configured.
+
+    Making a Pull Request:
+        You propose changes to another branch or repository.
+        Maintainers or collaborators review and decide whether to merge the changes.
+        Often used for contributing to open-source projects or team 
+
+

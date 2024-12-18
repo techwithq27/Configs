@@ -74,14 +74,7 @@ matches:
           cmd: "echo -e 'wp search-replace \'http://\' \'https://\''"
           
           
-      # imh zone
-  - trigger: ":ash"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo -e 'ash-sys-pro-imhzone'"
+    
           
           
       
@@ -203,15 +196,7 @@ matches:
         params:
           cmd: "echo -e 'echo \"<?php phpinfo(); ?>\" >> phpinfo.php'"
          
-         # Print the output of a shell command
-  - trigger: ":ss"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo '/opt/imh-scan/imh-scan -d'"
-          
+
           
         
           # Print the output of a shell command
@@ -352,14 +337,7 @@ matches:
           cmd: "echo -e 'exim -Mvh '"
         
         
-        # Print the output of a shell command
-  - trigger: ":ims"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo -e 'yum install -y imh-scan imh-clamav'"
+
         
         
         # Print the output of a shell command
@@ -610,14 +588,7 @@ matches:
           cmd: "echo -e 'check_apache --sortip --countip|tail -10'"
         
         
-        # Print the output of a shell command
-  - trigger: "!imh"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo -e 'inmotionhosting'"
+
           
           
           # Print the output of a shell command
@@ -711,14 +682,7 @@ matches:
         
         
         
-        # Print the output of a shell command
-  - trigger: ":nrpe"
-    replace: "{{output}}"
-    vars:
-      - name: output
-        type: shell
-        params:
-          cmd: "echo -e 'yum remove -y imh-monitoring-plugins-ded imh-nrpe-ded; yum install -y imh-nrpe-ded imh-monitoring-plugins-ded; systemctl restart nrpe'"
+ 
         
         
         # Print the output of a shell command
@@ -837,10 +801,6 @@ Thank you for contacting Abuse department!\n
 
 You will need to contact our legal department at legal@inmotionhosting.com for any copyright or trademark related issues, as our department only handles phishing/spam."
   
-  # inmotion
-  - trigger: "!imhw"
-    replace: "inmotionhosting.com:2087"
-
   # Serveconfig
   - trigger: "!serw"
     replace: "servconfig.com:2087"
